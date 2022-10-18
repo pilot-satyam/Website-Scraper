@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraper Lists</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class="conatiner">
+        <div class="row m-5">
+            <div class="col-md-12">
+                <h1>Web Links Collector</h1>
+            </div>
+        </div>
+        <div class="row m-5">
+            <div class="col-md-4">
+                <form method="POST",action="/">
+                    {% csrf_token %}
+                    <input class="form-control" type="text" id="site" placeholder="Enter Website" name="site">
+                </div>
+                <div class="col-md-1">
+                    <button class="btn btn-primary" typr="submit">Scrape</button>
+                </div>
+                </form>
+            <div class="col-md-7">
+                <!-- here /delete is linked in urls.py file to clear method in views.py file -->
+                <a class="btn btn-warning" href="/delete">Delete</a> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <table class="table table-dark">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Link</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for link in data %}
+                      <tr>
+                        <td>{{link.id}}</td>
+                        <td>{{link.name}}</td>
+                        <td>{{link.address}}</td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+    </div> 
+</body>
+</html>
